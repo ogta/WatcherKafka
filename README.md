@@ -14,16 +14,17 @@ Watcher Kafka Realtime Monitoring
 
 ```docker-compose -f docker-compose.watcher.yml up```
 
-Config your mongodb docker hostname
+###### Config your mongodb docker hostname
 
 ```docker ps```
 
-Find mongo's docker name and fix MONGO_IP in docker-compose.watcher.yml
+##### Find mongo's docker name and fix MONGO_IP in docker-compose.watcher.yml
 
 ```MONGO_IP: watcherkafka_mongo_1```
 
+### Testing
 
-Add Log Samples:
+##### Add Log Samples:
 
 ```docker exec -it watcherkafka_producer_1 bash```
 
@@ -33,6 +34,6 @@ Add Log Samples:
 
 ```vim serverlog.txt```
 
-add test log data > serverlog.txt
+Add test log data > serverlog.txt
 
-you can find test data in test_data.txt at project folder.
+You can find test data in test-data.txt at project folder.
