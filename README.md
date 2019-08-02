@@ -38,6 +38,6 @@ Add test log data > serverlog.txt
 
 You can find test data in test-data.txt at project folder.
 
-### Result
+### Result
 
 ![screenshot](screenshot.png "screenshot")
