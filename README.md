@@ -14,11 +14,11 @@ Watcher Kafka Realtime Monitoring
 
 ```docker-compose -f docker-compose.watcher.yml up```
 
-###### Config your mongodb docker hostname
+##### Config your mongodb docker hostname
 
 ```docker ps```
 
-##### Find mongo's docker name and fix MONGO_IP in docker-compose.watcher.yml
+##### Find container name for mongo and fix MONGO_IP in docker-compose.watcher.yml
 
 ```MONGO_IP: watcherkafka_mongo_1```
 
