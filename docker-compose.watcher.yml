@@ -1,0 +1,59 @@
+version: '3.3'
+services:
+  mongo:
+      image: mongo
+      restart: always
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: root
+      ports:
+        - 27017:27017
+  consumer:
+    depends_on:
+      - mongo
+    links:
+        - mongo
+    build: ./consumer
+    environment:
+      KAFKA_CLUSTER_URL: kafka:9092
+      TOPIC_ISTANBUL: topic-istanbul
+      TOPIC_MOSCOW: topic-moscow
+      TOPIC_BEIJING: topic-beijing
+      TOPIC_TOKYO: topic-tokyo
+      TOPIC_LONDON: topic-london
+      MONGO_IP: watcherkafka_mongo_1
+      MONGO_PORT: 27017
+      MONGO_USERNAME: root
+      MONGO_PASSWORD: root
+      MONGO_DATABASE: log
+      MONGO_COLLECTION: serverlog
+
+  producer:
+    build: ./producer
+    environment:
+      KAFKA_CLUSTER_URL: kafka:9092
+      TOPIC_ISTANBUL: topic-istanbul
+      TOPIC_MOSCOW: topic-moscow
+      TOPIC_BEIJING: topic-beijing
+      TOPIC_TOKYO: topic-tokyo
+      TOPIC_LONDON: topic-london
+      LOG_FILE_NAME: serverlog.txt
+
+  watcher:
+    build: ./watcher
+    ports:
+      - "5000:5000"
+    environment:
+      KAFKA_CLUSTER_IP: kafka
+      TOPIC_ISTANBUL: topic-istanbul
+      TOPIC_MOSCOW: topic-moscow
+      TOPIC_BEIJING: topic-beijing
+      TOPIC_TOKYO: topic-tokyo
+      TOPIC_LONDON: topic-london
+      LOG_FILE_NAME: serverlog.txt
+
+networks:
+  default:
+    external:
+      name: watcher-network
+
