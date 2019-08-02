@@ -38,6 +38,8 @@ Add test log data > serverlog.txt
 
 You can find test data in test-data.txt at project folder.
 
+watcher is running http://0.0.0.0:5000 
+
 ### Result
 
 ![screenshot](screenshot.png "screenshot")
